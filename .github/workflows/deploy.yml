@@ -16,7 +16,7 @@ jobs:
       - name: Replace placeholder values
         uses: microsoft/replace-action@v2
         with:
-          file: path/to/your/config/file  # Specify the file where the placeholder is located
+          file: .env  # Specify the file where the placeholder is located
           placeholder: 'MEANING_OF_LIFE_PLACEHOLDER'  # The placeholder in your file
           value: ${{ secrets.MEANING_OF_LIFE }}  # This is your secret
 
