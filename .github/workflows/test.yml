@@ -1,18 +1,21 @@
 name: Test our Secret Value
 
-on: [workflow_dispatch] 
+on: [workflow_dispatch]
 
 env:
-  ## Sets environment variable
-  {% raw %}
-  MEANING_OF_LIFE: ${{secrets.MEANING_OF_LIFE}}    
-  {% endraw %}
+  # Sets environment variable from the repository secret
+  MEANING_OF_LIFE: ${{ secrets.MEANING_OF_LIFE }}
+
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
       - name: Install Dependencies
-        run: npm i  
+        run: npm install
+
       - name: Run test script
         run: npm run test
+        env:
+          MEANING_OF_LIFE: ${{ secrets.MEANING_OF_LIFE }}  # Pass the secret to the test script
